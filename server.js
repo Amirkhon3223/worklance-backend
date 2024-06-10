@@ -9,12 +9,11 @@ import authRoutes from './routes/auth.js';
 
 const app = express();
 
-// Настраиваем CORS
 app.use(cors());
 
 app.use(bodyParser.json());
 
-// Подключение к MongoDB
+// Коннектимся к MongoDB
 mongoose.connect(process.env.MONGODB_URI)
     .then(() => {
         console.log('Connected to MongoDB');
@@ -23,10 +22,10 @@ mongoose.connect(process.env.MONGODB_URI)
         console.error('Error connecting to MongoDB', err);
     });
 
-// Routes
+// Трасса
 app.use('/api/auth', authRoutes);
 
-// Запуск сервера
+// Запуск к северному полюсу
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);
